@@ -13,9 +13,16 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false
         }
     );
-
+    
+    // define o relacionamento com Post
     usuario.associate = (models) => {
         usuario.hasMany(models.Post, {as: "posts", foreignKey: "usuarios_id"});
+        usuario.belongsToMany(
+            models.Post,
+            {
+                as: 'post',
+            }
+        );
     }
 
     return usuario;

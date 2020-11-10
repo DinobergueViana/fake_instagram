@@ -1,8 +1,9 @@
 const { sequelize, Post } = require('../models');
 
-Post.findAll().then(
-    data => {
-        console.log(data.map( u => u.toJSON()));
+Post.findByPk(1, {include: ['usuario', 'curtiram']}).then(
+    post => {
+        console.log(post.toJSON())
+        // console.log(data.map( u => u.toJSON()));
         sequelize.close();
     }
 )
